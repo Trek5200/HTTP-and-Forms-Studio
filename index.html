@@ -3,17 +3,49 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        // TODO: register the handler
-    });
+						// TODO: create a handler
+
+		let actions = {
+   			"google": 		"https://www.google.com/",
+			"duckDuckGo": 	"https://duckduckgo.com/",
+			"bing": 		"https://www.bing.com/search",
+			"ask": 			"https://www.ask.com/web"
+		};
+
+		function setSearchEngine(event) {
+						// event.preventDefault();	
+						//console.log("TESTING setSearchEngine");
+			let selectedSearchEngine = document.querySelector("input[name=engine]:checked").value;
+						//console.log(selectedSearchEngine);
+    		let form = document.getElementById("searchForm");
+			selectedSearchEngine = actions[selectedSearchEngine];
+			form.setAttribute("action", selectedSearchEngine);			
+						//console.log(selectedSearchEngine);
+						// event.preventDefault();			
+		}
+		
+    	window.addEventListener("load", function(){
+			let form = document.getElementById("searchForm");
+						// TODO: register the handler
+    		form.addEventListener("submit", setSearchEngine);
+    	});
 	</script>
+
 </head>
 
 <body>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<form id="searchForm" action = "">
+						<!-- TODO: add form elements -->
+		<input type="text" name="q"/>
+
+		<label>Google 		<input type="radio" name="engine" value="google" required/>		</label>
+		<label>DuckDuckGo	<input type="radio" name="engine" value="duckDuckGo" required/>	</label>
+		<label>Bing			<input type="radio" name="engine" value="bing" required/>		</label>
+		<label>Ask			<input type="radio" name="engine" value="ask" required/>		</label>
+
+		<input type="submit" value="Go!">
+
 	</form>
 
 </body>
